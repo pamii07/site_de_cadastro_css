@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Estilizado</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f3eefc;
+            color: #2e1a47;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 450px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(91, 33, 182, 0.15);
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0 0 10px 0;
+            color: #4c1d95;
+            text-shadow: 1px 2px 4px rgba(76, 29, 149, 0.15);
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.2rem;
+            color: #5b21b6;
+        }
+
+        form {
+            display: grid;
+            gap: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #4a4062;
+        }
+
+        input {
+            padding: 12px;
+            color: #2e1a47;
+            background-color: #f8f5fe;
+            border: 2px solid #ddd6fe;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        input[type="color"] {
+            height: 45px;
+            padding: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            background-color: #ffffff;
+            box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
+        }
+
+        button {
+            padding: 12px;
+            color: #ffffff;
+            background-color: #6d28d9;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 5px 14px rgba(109, 40, 217, 0.35);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #8b5cf6;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        section {
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid #f3eefc;
+        }
+
+        /* Efeito ao passar o mouse sobre o h2 dentro da section */
+        section h2:hover {
+            color: red;
+            background-color: lightgreen;
+        }
+
+        #resultado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #resultado p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Formulário de Cadastro</h1>
+
+        <form id="formulario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required placeholder="Digite seu nome">
+
+            <label for="nascimento">Data de nascimento:</label>
+            <input type="date" id="nascimento" required>
+
+            <label for="cor">Cor preferida:</label>
+            <input type="color" id="cor" value="#7c3aed">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <section>
+            <h2>Dados preenchidos</h2>
+            <div id="resultado"></div>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const nascimento = document.getElementById("nascimento").value;
+            const cor = document.getElementById("cor").value;
+
+            resultado.innerHTML = "";
+
+            const pNome = document.createElement("p");
+            pNome.textContent = "Nome: " + nome;
+
+            const pNascimento = document.createElement("p");
+            pNascimento.textContent = "Nascimento: " + nascimento;
+
+            const pCor = document.createElement("p");
+            pCor.textContent = "Cor preferida: " + cor;
+
+            const amostraCor = document.createElement("div");
+            amostraCor.style.backgroundColor = cor;
+            amostraCor.style.width = "100px";
+            amostraCor.style.height = "40px";
+            amostraCor.style.borderRadius = "6px";
+            amostraCor.style.border = "1px solid #ccc";
+            amostraCor.style.boxShadow = "0 2px 6px rgba(0,0,0,0.15)";
+
+            resultado.appendChild(pNome);
+            resultado.appendChild(pNascimento);
+            resultado.appendChild(pCor);
+            resultado.appendChild(amostraCor);
+        });
+    </script>
+</body>
+</html>
